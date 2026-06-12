@@ -8,7 +8,6 @@ from pathlib import Path
 # =========================
 st.set_page_config(
     page_title="스마트팜 착과율 예측",
-    page_icon="🍅",
     layout="wide"
 )
 
@@ -83,7 +82,7 @@ rf_model = joblib.load(MODEL_PATH)
 # =========================
 st.markdown("""
 <div class="header-box">
-    <h1>🍅 스마트팜 착과율 예측 AI</h1>
+    <h1> 스마트팜 착과율 예측 AI</h1>
     <h4>
     온도 · 습도 · 지온 데이터를 활용한
     실시간 착과율 분석 시스템
@@ -109,7 +108,7 @@ with st.container(border=True):
 
     with col1:
         temp = st.number_input(
-            "🌡️ 내부온도 (℃)",
+            "🌤️ 내부온도 (℃)",
             min_value=0.0,
             max_value=50.0,
             value=25.0,
@@ -127,7 +126,7 @@ with st.container(border=True):
 
     with col3:
         soil_temp = st.number_input(
-            "🌱 지온 (℃)",
+            "🌡️ 지온 (℃)",
             min_value=0.0,
             max_value=50.0,
             value=22.0,
@@ -137,7 +136,7 @@ with st.container(border=True):
 # =========================
 # 현재 환경 상태
 # =========================
-st.subheader("📊 현재 입력 환경")
+st.subheader("현재 입력 환경")
 
 m1, m2, m3 = st.columns(3)
 
@@ -164,7 +163,7 @@ st.markdown("")
 # =========================
 # 예측 버튼
 # =========================
-if st.button("🔍 착과율 예측하기"):
+if st.button("착과율 예측하기"):
 
     input_data = pd.DataFrame(
         [[temp, humidity, soil_temp]],
@@ -183,7 +182,7 @@ if st.button("🔍 착과율 예측하기"):
     st.markdown(f"""
     <div class="result-card">
 
-        <h2>📈 예측 착과율</h2>
+        <h2>📊예측 착과율</h2>
 
         <h1 style="
         font-size:75px;
@@ -214,17 +213,17 @@ if st.button("🔍 착과율 예측하기"):
     # 상태 판정
     if result >= 80:
         st.success(
-            "🟢 매우 양호한 생육 환경입니다."
+            "🟢 매우 양호"
         )
 
     elif result >= 60:
         st.warning(
-            "🟡 적정 수준의 생육 환경입니다."
+            "🟡 적정 수준"
         )
 
     else:
         st.error(
-            "🔴 착과율 향상을 위해 환경 개선이 필요합니다."
+            "🔴 환경 개선이 필요"
         )
 
 # =========================
@@ -232,6 +231,3 @@ if st.button("🔍 착과율 예측하기"):
 # =========================
 st.markdown("---")
 
-st.caption(
-    "🍅 AI 기반 스마트팜 착과율 예측 시스템"
-)
